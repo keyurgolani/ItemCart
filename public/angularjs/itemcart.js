@@ -1,4 +1,5 @@
 var itemcart = angular.module('itemcart', []);
+
 itemcart.controller('cartController', function($scope, $http) {
 	$scope.items = [{
 		"item_name"		:	"God of War",
@@ -26,11 +27,47 @@ itemcart.controller('cartController', function($scope, $http) {
 		"item_count"	:	0
 	}];
 	
-	$scope.cart = [];
+	$scope.cartItems = [];
 	
 	$http({
 		method:	'POST',
-		url:	'/sessionItems',
-		
-	})
+		url:	'/sessionItems'
+	}).success(function(data) {
+		$scope.cartItems = data.cartItems;
+		$scope.total = data.price;
+	}).error(function(error) {
+		// TODO: Handle Errors
+	});
+	
+	$scope.add = function() {
+		$scope.errorMessage = "";
+		var negativeCount = false;
+		var cartItems = [];
+		for(var i = 0; i < $scope.items.length; i++) {
+			if($scope.items[i].item_count > 0) {
+				cartItems.push($scope.items[i]);
+			} else if($scope.items[i].item_count < 0) {
+				negativeCount = true;
+			}
+		}
+		if(negativeCount) {
+			$scope.errorMessage = "Negative number of items cannot be added to cart.";
+		} else {
+			$http({
+				method	:	'POST',
+				url		:	'/addItems',
+				data	:	{
+					"cartItems"	:	cartItems
+				}
+			}).success(function(data) {
+				$scope.total = data.price;
+				$scope.cartItems = data.cartItems;
+				for(var i = 0; i < $scope.items.length; i++) {
+					$scope.items[i].item_count = 0;
+				}
+			}).error(function(error) {
+				// TODO: Handle Errors
+			});
+		}
+	}
 });

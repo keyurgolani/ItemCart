@@ -8,16 +8,27 @@ body {
 	padding-top: 0px;
 	margin-top: 0px;
 	text-align: center;
+	text-decoration: underline;
 }
 
 .items {
 	margin: 1%;
-	padding: 9%;
+	padding: 5% 15% 5% 15%;
 	text-align: center;
 	text-shadow: black;
 	font-weight: bold;
 	background-color: #DAF7A6;
 	border-radius: 10px;
+}
+
+.cart-items {
+	padding: 2%;
+}
+
+.total {
+	border-top: 2px solid black;
+	text-align: center;
+	font-size: 150%
 }
 
 .count {

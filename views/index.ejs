@@ -48,10 +48,31 @@
     						Cart Items
     					</div>
     				</div>
+    				<div class="row">
+    					<div class="col-md-12">
+    						<div ng-repeat="cartItem in cartItems">
+    							<div class="row items cart-items">
+    								<div class="col-md-6">
+    									{{cartItem.item_name}}
+    								</div>
+    								<div class="col-md-6">
+    									<div class="row">Price: ${{cartItem.item_price}}</div>
+    									<div class="row">Quantity: {{cartItem.item_count}}</div>
+    								</div>
+    							</div>
+    						</div>
+    						<div class="row total">
+    							<div ng-if="total">
+    								TOTAL: ${{total}}
+    							</div>
+    						</div>
+    					</div>
+    				</div>
     			</div>
     		</div>
     		<div class="row">
     			<div class="col-md-12" align="center">
+    				<div ng-if="errorMessage"><span class="alert alert-danger">{{errorMessage}}</span></div>
     				<button ng-click="add()" class="btn btn-normal form-control" style="margin-top: 5%;">Add Item</button>
     			</div>
     		</div>
