@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #FF5733;
+}
+
+.title {
+	padding-top: 0px;
+	margin-top: 0px;
+	text-align: center;
+}
+
+.items {
+	margin: 1%;
+	padding: 9%;
+	text-align: center;
+	text-shadow: black;
+	font-weight: bold;
+	background-color: #DAF7A6;
+	border-radius: 10px;
+}
+
+.count {
+	padding: 0px;
+}
+
+.plus-control {
+	padding: 0px;
+	padding-left: 15px;
+}
+
+.minus-control {
+	padding: 0px;
+	padding-right: 15px;
+}
+
+.control-button {
+	width: 100%;
+	text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
