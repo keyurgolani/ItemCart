@@ -48,9 +48,13 @@ itemcart.controller('cartController', function($scope, $http) {
 				cartItems.push($scope.items[i]);
 			} else if($scope.items[i].item_count < 0) {
 				negativeCount = true;
+				break;
 			}
 		}
 		if(negativeCount) {
+			for(var i = 0; i < $scope.items.length; i++) {
+				$scope.items[i].item_count = 0;
+			}
 			$scope.errorMessage = "Negative number of items cannot be added to cart.";
 		} else {
 			$http({
